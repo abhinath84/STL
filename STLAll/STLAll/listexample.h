@@ -28,4 +28,5 @@ void printTwoLists(const std::list<T> &fstList, const std::list<T> &sndList)
 
 // Methods
 void listSimpleExample();
+
 #endif  //LISTEXAMPLE_H

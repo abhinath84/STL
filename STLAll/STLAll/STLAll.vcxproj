@@ -78,9 +78,12 @@
   <ItemGroup>
     <ClCompile Include="listexample.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="vectorexample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="listexample.h" />
+    <ClInclude Include="stlutility.h" />
+    <ClInclude Include="vectorexample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

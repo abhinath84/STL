@@ -16,6 +16,12 @@
     <Filter Include="List">
       <UniqueIdentifier>{8eb5d5e6-6033-45ba-8aa4-467998660fde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vector">
+      <UniqueIdentifier>{23644b04-f167-4577-9fca-0fabf6d098e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{dfa3fab3-6993-45ca-af7e-ccf61694ce78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,10 +30,19 @@
     <ClCompile Include="listexample.cpp">
       <Filter>List</Filter>
     </ClCompile>
+    <ClCompile Include="vectorexample.cpp">
+      <Filter>Vector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="listexample.h">
       <Filter>List</Filter>
+    </ClInclude>
+    <ClInclude Include="vectorexample.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="stlutility.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
