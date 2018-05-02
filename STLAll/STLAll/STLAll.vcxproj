@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="listexample.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mixed.cpp" />
     <ClCompile Include="vectorexample.cpp" />
   </ItemGroup>
   <ItemGroup>

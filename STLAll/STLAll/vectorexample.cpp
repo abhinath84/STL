@@ -1,4 +1,5 @@
 #include "vectorexample.h"
+#include "stlutility.h"
 
 
 void vectorSimpleExample()
@@ -34,9 +35,13 @@ void vectorSimpleExample()
 
   // better way if to use 'remove_if' and 'erase' method.
   // It'll took O(n) - Linear time.
-  ivec.erase(std::remove_if(ivec.begin(), ivec.end(),
-                            [] (int elem) { return ((elem % 2) == 1); }),
-            ivec.end());
+  //ivec.erase(std::remove_if(ivec.begin(), ivec.end(),
+  //                          [] (int elem) { return ((elem % 2) == 1); }),
+  //            ivec.end());
+
+  // my own range based erase implementation (using template metaprogramming).
+  avenger::erase_if(ivec, [] (int elem) { return ((elem % 2) == 1); });
+
 
   // Print the vector
   printVector("After Erase odd elements : ", ivec);

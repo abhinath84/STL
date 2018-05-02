@@ -61,6 +61,54 @@ namespace avenger
 
     template<typename T, typename C, typename A> struct container_traits<std::unordered_multimap<T, C, A> >
     { typedef associativelike_tag category; };
+
+    // Helper methods for erase & erase_if for different container type
+    template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, vectorlike_tag)
+    {
+      c.erase(std::remove(c.begin(), c.end(), arg), c.end());
+    }
+
+    template<typename Container, typename Pred> void erase_if_helper(Container &c, Pred p, vectorlike_tag)
+    {
+      c.erase(std::remove_if(c.begin(), c.end(), p), c.end());
+    }
+
+    template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, listlike_tag)
+    {
+      c.remove(x);
+    }
+
+    template<typename Container, typename Pred> void erase_if_helper(Container &c, Pred p, listlike_tag)
+    {
+      c.remove_if(p);
+    }
+
+    template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, associativelike_tag)
+    {
+      c.remove(x);
+    }
+
+    template<typename Container, typename Pred> void erase_if_helper(Container &c, Pred p, associativelike_tag)
+    {
+      for(auto itr = c.begin(); itr != c.end(); )
+      {
+        if(p(*itr))
+          c.erase(itr++);
+        else
+          ++itr;
+      }
+    }
+  }
+
+  // Implement the generic method for erase and erase_if for user
+  template<typename Container, typename Arg> void erase(Container &c, const Arg &arg)
+  {
+    detail::erase_helper(c, arg, typename detail::container_traits<Container>::category());
+  }
+
+  template<typename Container, typename Pred> void erase_if(Container &c, Pred p)
+  {
+    detail::erase_if_helper(c, p, typename detail::container_traits<Container>::category());
   }
 }
 

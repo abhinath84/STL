@@ -33,6 +33,9 @@
     <ClCompile Include="vectorexample.cpp">
       <Filter>Vector</Filter>
     </ClCompile>
+    <ClCompile Include="mixed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="listexample.h">
