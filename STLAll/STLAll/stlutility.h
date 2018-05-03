@@ -13,6 +13,50 @@
 #include <algorithm>
 
 
+// Implement container independent erase method.
+// like: 
+// avenger::erase(ivector, 10);
+// avenger::erase(ilist, 10);
+// avenger::erase(iset, 10);
+// avenger::erase(imap, 10);
+//
+// Input: Container: to remove item(s)
+//        item to remove.
+//
+// things to know:
+//    - How to identify container type?
+//    - How to call specific erase method based on container type.
+//
+// Steps:
+//    - Will write a generic template based method which handle contener type internally and call
+//      apropriate helper method based on the Container type.
+//        template<typename Container, typename Arg> void erase(Container &c, const Arg &arg)
+//        {
+//          detail::erase_helper(c, arg, typename detail::container_traits<Container>::category());
+//        }
+//      Here 3rd parameter is provide the Container type using trait and call corresponding 'erase_helper' method.
+//
+//    - Will write erase helper method for each container type, like:
+//        template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, vectorlike_tag)
+//        template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, listlike_tag)
+//        template<typename Container, typename Arg> void erase_helper(Container &c, const Arg &arg, associativelike_tag)
+//      Here 3rd parameter is the type of Container and will call specific helper method according to Container type.
+//
+//    - Now question is how to get container type in compile type?
+//      To solve this problem we can use trait o identify container type.
+//      - First we define empty non-templated structure to identify Container tag, Like:
+//        struct vectorlike_tag { };
+//        struct listlike_tag { };
+//      - Then write another templated structure which identify Container tag according to the specialization of the structure, Like:
+//        template<typename T, typename A> struct container_traits<std::vector<T, A> >
+//        { typedef vectorlike_tag category; };
+//        *** We did typedef to 'category' to get a common interface to address.
+//      - Then we do typename from this 'container_traits' structure inside generic 'erase' method.
+//
+// Question:
+//    - Instead of empty non-templated structure, can we use any other approach, like: enum?
+//    - What are the other way to get Container/data structure/class type compile/run time?
+
 // Implement generic range based element removal from STL containers.
 namespace avenger
 {
